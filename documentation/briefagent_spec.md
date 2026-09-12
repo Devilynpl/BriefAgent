@@ -64,7 +64,22 @@ Rezygnujemy z niekontrolowanych pętli while True. Używamy deterministycznego g
 - [x] ~~**Graceful Failure Node**:~~
   - ~~Jeśli po 3 krokach agent nie znalazł żadnych rzetelnych źródeł, graf omija syntezę i kończy działanie statusem UNVERIFIABLE_COMPANY, uniemożliwiając zmyślanie.~~
 
-Faza 4: Pełny Silnik Śledzenia (Execution Trace Engine)Agent bez przejrzystego logowania to czarna skrzynka, której nikt w biznesie nie zaufa.[ ] Rejestrator ścieżki myślowej i wywołań (Trace Collector):Rejestracja w formacie JSONL każdego kroku:step: numer krokuthought: wewnętrzny Chain-of-Thought agentaaction_plan: co zamierza wywołaćtool_call: dokładne parametrytool_result_summary: pierwsze 200 znaków odpowiedzi narzędziatokens_used oraz koszt w USD[ ] Generator wizualnego raportu wykonania (Execution Trace Tree):Eksport pojedynczego przebiegu do czytelnego pliku HTML/Markdown pokazującego drzewo decyzji:Plan $\to$ Search [OK] $\to$ Scrape [Error 403 $\to$ Fallback do Mocka] $\to$ Synthesis $\to$ Done.[ ] Wyjście końcowe w restrykcyjnym formacie JSON:Pythonclass AccountBrief(BaseModel):
+Faza 4: Pełny Silnik Śledzenia (Execution Trace Engine)
+Agent bez przejrzystego logowania to czarna skrzynka, której nikt w biznesie nie zaufa.
+- [x] ~~**Rejestrator ścieżki myślowej i wywołań (Trace Collector)**:~~
+  ~~Rejestracja w formacie JSONL każdego kroku:~~
+  - ~~step: numer kroku~~
+  - ~~thought: wewnętrzny Chain-of-Thought agenta~~
+  - ~~action_plan: co zamierza wywołać~~
+  - ~~tool_call: dokładne parametry~~
+  - ~~tool_result_summary: pierwsze 200 znaków odpowiedzi narzędzia~~
+  - ~~tokens_used oraz koszt w USD~~
+- [x] ~~**Generator wizualnego raportu wykonania (Execution Trace Tree)**:~~
+  ~~Eksport pojedynczego przebiegu do czytelnego pliku HTML/Markdown pokazującego drzewo decyzji:~~
+  ~~Plan $\to$ Search [OK] $\to$ Scrape [Error 403 $\to$ Fallback do Mocka] $\to$ Synthesis $\to$ Done.~~
+- [x] ~~**Wyjście końcowe w restrykcyjnym formacie JSON**:~~
+```python
+class AccountBrief(BaseModel):
     company_name: str
     value_proposition: str
     estimated_size: str
@@ -73,6 +88,7 @@ Faza 4: Pełny Silnik Śledzenia (Execution Trace Engine)Agent bez przejrzystego
     sales_triggers: List[str]
     confidence_score: float # 0.0 - 1.0
     missing_information: List[str]
+```
 Faza 5: Ewaluacja na 25 przypadkach, optymalizacja kosztów i PublikacjaTestujemy agenta na przygotowanym benchmarku i dokumentujemy twarde dane.[ ] Zautomatyzowany Benchmark Runner (run_agent_eval.py):Uruchomienie agenta dla wszystkich 25 firm z Fazy 1 w trybie równoległym (z semaforem).Ewaluacja wygenerowanych briefów przez niezależnego sędziego z Fazy 1 (rubryka binarna 0/1).[ ] Kalkulacja metryk końcowych:Task Success Rate: Odsetek briefów spełniających $\ge 5/6$ kryteriów rubryki.Avg Steps to Completion: Średnia liczba kroków na udane zadanie (optimum: 4–7 kroków).Tool Error Recovery Rate: Ile błędów 4xx/5xx udało się zneutralizować bez wywrotki całego procesu.Cost per Successful Brief: Średni koszt w tokenach i USD za wygenerowany pełny brief.[ ] README z twardymi liczbami (Wyróżnik inżynierski):Wypełnienie sekcji ewaluacyjnej w dokumentacji:Markdown| Metryka | Cel | Wynik BriefAgent |
 | :--- | :---: | :---: |
 | **Task Success (Rubryka 5/6)** | > 80% | **88.0% (22/25)** |

@@ -1,0 +1,9 @@
+{
+  "min_faithfulness": 0.90,
+  "min_rubric_score": 0.83,
+  "require_stealth_zero_hallucination": true,
+  "max_agent_steps": 12,
+  "max_agent_cost_usd": 0.15,
+  "max_critical_regressions": 0,
+  "max_p95_latency_ms": 25000.0
+}

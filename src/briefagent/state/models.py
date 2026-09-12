@@ -14,11 +14,17 @@ class ToolExecution(BaseModel):
 class AccountBrief(BaseModel):
     company_name: str
     value_proposition: str
+    headquarters: Optional[str] = None
     estimated_size: str
-    verified_sources: List[str] = Field(default_factory=list)
+    leadership: List[str] = Field(default_factory=list)
+    products_and_services: List[str] = Field(default_factory=list)
+    target_markets: List[str] = Field(default_factory=list)
+    key_competitors: List[str] = Field(default_factory=list)
     tech_stack_detected: List[str] = Field(default_factory=list)
     sales_triggers: List[str] = Field(default_factory=list)
+    ai_and_digital_opportunities: List[str] = Field(default_factory=list)
     confidence_score: float = Field(default=0.0, ge=0.0, le=1.0)
+    verified_sources: List[str] = Field(default_factory=list)
     missing_information: List[str] = Field(default_factory=list)
 
 

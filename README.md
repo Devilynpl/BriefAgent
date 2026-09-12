@@ -47,10 +47,12 @@ Agent został przetestowany za pomocą zautomatyzowanego runnera (`tests/evals/r
 ## 🌐 Integracja w Ekosystemie Portfolio AI
 
 BriefAgent ściśle współpracuje z pozostałymi komponentami produkcyjnymi:
-- ⚖️ **[TheJudge / JudgeKit](file:///c:/Users/rakpa/Documents/Ai_Engineer_Portfolio/TheJudge):** Centralna bramka jakości CI/CD (`.github/workflows/agent_eval_gate.yml`). JudgeKit testuje agenta za pomocą adaptera ([BriefAgentTargetAdapter](file:///c:/Users/rakpa/Documents/Ai_Engineer_Portfolio/BriefAgent/tests/evals/agent_eval_adapter.py)), weryfikując 6 kryteriów rubryki, $100\%$ brak halucynacji na firmach stealth (`UNVERIFIABLE_COMPANY`) oraz compliance z twardymi limitami kroków i budżetu (\$0.15).
-- 🛡️ **[DocGround](file:///c:/Users/rakpa/Documents/Ai_Engineer_Portfolio/DocGround):** System hybrydowego retrievalu RAG dostarczający zweryfikowane fakty z wewnętrznych baz i dokumentów korporacyjnych.
+- 🔀 **[Tollgate](https://github.com/Devilynpl/TollGate):** Centralny LLM Gateway (FastAPI) z rate-limitingiem RPM, semantycznym cache'em, guardrailsami regex i dziennym budżetem tokenów. BriefAgent kieruje wszystkie wywołania LLM przez `POST /v1/chat` Tollgate zamiast bezpośrednio do Gemini API.
+- ⚖️ **[TheJudge / JudgeKit](https://github.com/Devilynpl/TheJudge):** Centralna bramka jakości CI/CD (`.github/workflows/agent_eval_gate.yml`). JudgeKit testuje agenta za pomocą adaptera (`BriefAgentTargetAdapter`), weryfikując 6 kryteriów rubryki, 100% brak halucynacji na firmach stealth (`UNVERIFIABLE_COMPANY`) oraz compliance z twardymi limitami kroków i budżetu ($0.15).
+- 🛡️ **[DocGround](https://github.com/Devilynpl/DocGround):** System hybrydowego retrievalu RAG dostarczający zweryfikowane fakty z wewnętrznych baz i dokumentów korporacyjnych.
 
 ---
+
 
 ## 🏗️ Architektura Grafu Decyzyjnego
 

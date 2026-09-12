@@ -1,0 +1,1260 @@
+{
+  "total_cases": 25,
+  "task_success_rate_percent": 100.0,
+  "avg_steps": 7.72,
+  "avg_cost_usd": 0.022539999999999994,
+  "tool_recovery_rate_percent": 100.0,
+  "zero_hallucination_rate_percent": 100.0,
+  "results": [
+    {
+      "company_name": "Snowflake",
+      "domain": "snowflake.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Snowflake",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 3 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_snowflake_1789229297176.jsonl",
+      "trace_html": "artifacts\\trace_snowflake_1789229297176.html"
+    },
+    {
+      "company_name": "Datadog",
+      "domain": "datadoghq.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Datadog",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 4 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_datadog_1789229297182.jsonl",
+      "trace_html": "artifacts\\trace_datadog_1789229297182.html"
+    },
+    {
+      "company_name": "Stripe",
+      "domain": "stripe.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Stripe",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 2 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_stripe_1789229297186.jsonl",
+      "trace_html": "artifacts\\trace_stripe_1789229297186.html"
+    },
+    {
+      "company_name": "Cloudflare",
+      "domain": "cloudflare.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Cloudflare",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 2 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_cloudflare_1789229297190.jsonl",
+      "trace_html": "artifacts\\trace_cloudflare_1789229297190.html"
+    },
+    {
+      "company_name": "HubSpot",
+      "domain": "hubspot.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "HubSpot",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 2 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_hubspot_1789229297194.jsonl",
+      "trace_html": "artifacts\\trace_hubspot_1789229297194.html"
+    },
+    {
+      "company_name": "Shopify",
+      "domain": "shopify.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Shopify",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 3 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_shopify_1789229297198.jsonl",
+      "trace_html": "artifacts\\trace_shopify_1789229297198.html"
+    },
+    {
+      "company_name": "Twilio",
+      "domain": "twilio.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 12,
+      "cost_spent_usd": 0.0355,
+      "rubric_result": {
+        "company_name": "Twilio",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 2 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 4 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_twilio_1789229297203.jsonl",
+      "trace_html": "artifacts\\trace_twilio_1789229297203.html"
+    },
+    {
+      "company_name": "Atlassian",
+      "domain": "atlassian.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Atlassian",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 2 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_atlassian_1789229297208.jsonl",
+      "trace_html": "artifacts\\trace_atlassian_1789229297208.html"
+    },
+    {
+      "company_name": "GitLab",
+      "domain": "gitlab.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "GitLab",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 2 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_gitlab_1789229297212.jsonl",
+      "trace_html": "artifacts\\trace_gitlab_1789229297212.html"
+    },
+    {
+      "company_name": "Asana",
+      "domain": "asana.com",
+      "tier": "ENTERPRISE",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Asana",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 1 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_asana_1789229297216.jsonl",
+      "trace_html": "artifacts\\trace_asana_1789229297216.html"
+    },
+    {
+      "company_name": "Monterail",
+      "domain": "monterail.com",
+      "tier": "MID_MARKET_SAAS",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Monterail",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 5 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_monterail_1789229297221.jsonl",
+      "trace_html": "artifacts\\trace_monterail_1789229297221.html"
+    },
+    {
+      "company_name": "Netguru",
+      "domain": "netguru.com",
+      "tier": "MID_MARKET_SAAS",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Netguru",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 4 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_netguru_1789229297225.jsonl",
+      "trace_html": "artifacts\\trace_netguru_1789229297225.html"
+    },
+    {
+      "company_name": "10Clouds",
+      "domain": "10clouds.com",
+      "tier": "MID_MARKET_SAAS",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "10Clouds",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 1 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_10clouds_1789229297229.jsonl",
+      "trace_html": "artifacts\\trace_10clouds_1789229297229.html"
+    },
+    {
+      "company_name": "Brainly",
+      "domain": "brainly.com",
+      "tier": "MID_MARKET_SAAS",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Brainly",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 3 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_brainly_1789229297233.jsonl",
+      "trace_html": "artifacts\\trace_brainly_1789229297233.html"
+    },
+    {
+      "company_name": "Docplanner",
+      "domain": "docplanner.com",
+      "tier": "MID_MARKET_SAAS",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Docplanner",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 5 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_docplanner_1789229297238.jsonl",
+      "trace_html": "artifacts\\trace_docplanner_1789229297238.html"
+    },
+    {
+      "company_name": "PostHog",
+      "domain": "posthog.com",
+      "tier": "MID_MARKET_SAAS",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "PostHog",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 3 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_posthog_1789229297242.jsonl",
+      "trace_html": "artifacts\\trace_posthog_1789229297242.html"
+    },
+    {
+      "company_name": "Supabase",
+      "domain": "supabase.com",
+      "tier": "MID_MARKET_SAAS",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Supabase",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 2 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_supabase_1789229297246.jsonl",
+      "trace_html": "artifacts\\trace_supabase_1789229297246.html"
+    },
+    {
+      "company_name": "Basecamp",
+      "domain": "basecamp.com",
+      "tier": "MID_MARKET_SAAS",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Basecamp",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 2 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_basecamp_1789229297251.jsonl",
+      "trace_html": "artifacts\\trace_basecamp_1789229297251.html"
+    },
+    {
+      "company_name": "Boldare",
+      "domain": "boldare.com",
+      "tier": "SMALL_SMB",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Boldare",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 5 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_boldare_1789229297255.jsonl",
+      "trace_html": "artifacts\\trace_boldare_1789229297255.html"
+    },
+    {
+      "company_name": "Droptica",
+      "domain": "droptica.com",
+      "tier": "SMALL_SMB",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 12,
+      "cost_spent_usd": 0.0355,
+      "rubric_result": {
+        "company_name": "Droptica",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 4 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 4 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_droptica_1789229297259.jsonl",
+      "trace_html": "artifacts\\trace_droptica_1789229297259.html"
+    },
+    {
+      "company_name": "Apptension",
+      "domain": "apptension.com",
+      "tier": "SMALL_SMB",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Apptension",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 6 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 2 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_apptension_1789229297264.jsonl",
+      "trace_html": "artifacts\\trace_apptension_1789229297264.html"
+    },
+    {
+      "company_name": "Ideamotive",
+      "domain": "ideamotive.co",
+      "tier": "SMALL_SMB",
+      "is_adversarial": false,
+      "status": "COMPLETED",
+      "step_count": 8,
+      "cost_spent_usd": 0.023499999999999997,
+      "rubric_result": {
+        "company_name": "Ideamotive",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Specific revenue/value model identified"
+          },
+          "scale_headcount": {
+            "name": "Scale & Headcount",
+            "passed": true,
+            "reason": "Specific headcount/scale identified"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack / Product Signals",
+            "passed": true,
+            "reason": "Detected 5 tech/product signals"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points / Triggers",
+            "passed": true,
+            "reason": "Found 3 sales triggers/pain points"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Verified with 3 URLs"
+          },
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Appropriately recorded missing fields or high confidence"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_ideamotive_1789229297269.jsonl",
+      "trace_html": "artifacts\\trace_ideamotive_1789229297269.html"
+    },
+    {
+      "company_name": "OmniVortex HyperTech Dynamics",
+      "domain": "omnivortexhypertech.nonexistent",
+      "tier": "ADVERSARIAL_STEALTH",
+      "is_adversarial": true,
+      "status": "UNVERIFIABLE_COMPANY",
+      "step_count": 3,
+      "cost_spent_usd": 0.0075,
+      "rubric_result": {
+        "company_name": "OmniVortex HyperTech Dynamics",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Correctly flagged lack of verifiable data without hallucinations"
+          },
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "scale_headcount": {
+            "name": "Scale Headcount",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack Signals",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points Triggers",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_omnivortex_hypertech_dynamics_1789229297273.jsonl",
+      "trace_html": "artifacts\\trace_omnivortex_hypertech_dynamics_1789229297273.html"
+    },
+    {
+      "company_name": "Aetheria Quantum BioLabs",
+      "domain": "aetheriaquantumbio.invalid",
+      "tier": "ADVERSARIAL_STEALTH",
+      "is_adversarial": true,
+      "status": "UNVERIFIABLE_COMPANY",
+      "step_count": 3,
+      "cost_spent_usd": 0.0075,
+      "rubric_result": {
+        "company_name": "Aetheria Quantum BioLabs",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Correctly flagged lack of verifiable data without hallucinations"
+          },
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "scale_headcount": {
+            "name": "Scale Headcount",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack Signals",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points Triggers",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_aetheria_quantum_biolabs_1789229297276.jsonl",
+      "trace_html": "artifacts\\trace_aetheria_quantum_biolabs_1789229297276.html"
+    },
+    {
+      "company_name": "NonExistentPhantomCorp123",
+      "domain": "nonexistentphantomcorp123.fake",
+      "tier": "ADVERSARIAL_STEALTH",
+      "is_adversarial": true,
+      "status": "UNVERIFIABLE_COMPANY",
+      "step_count": 3,
+      "cost_spent_usd": 0.0075,
+      "rubric_result": {
+        "company_name": "NonExistentPhantomCorp123",
+        "is_success": true,
+        "passed_count": 6,
+        "total_count": 6,
+        "criteria": {
+          "graceful_degradation": {
+            "name": "Graceful Degradation",
+            "passed": true,
+            "reason": "Correctly flagged lack of verifiable data without hallucinations"
+          },
+          "core_business": {
+            "name": "Core Business",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "scale_headcount": {
+            "name": "Scale Headcount",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "tech_stack_signals": {
+            "name": "Tech Stack Signals",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "pain_points_triggers": {
+            "name": "Pain Points Triggers",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          },
+          "source_verification": {
+            "name": "Source Verification",
+            "passed": true,
+            "reason": "Handled via truthful non-hallucinatory degraded state"
+          }
+        },
+        "rejection_reasons": []
+      },
+      "trace_jsonl": "artifacts\\trace_nonexistentphantomcorp123_1789229297278.jsonl",
+      "trace_html": "artifacts\\trace_nonexistentphantomcorp123_1789229297278.html"
+    }
+  ]
+}

@@ -89,10 +89,23 @@ class AccountBrief(BaseModel):
     confidence_score: float # 0.0 - 1.0
     missing_information: List[str]
 ```
-Faza 5: Ewaluacja na 25 przypadkach, optymalizacja kosztów i PublikacjaTestujemy agenta na przygotowanym benchmarku i dokumentujemy twarde dane.[ ] Zautomatyzowany Benchmark Runner (run_agent_eval.py):Uruchomienie agenta dla wszystkich 25 firm z Fazy 1 w trybie równoległym (z semaforem).Ewaluacja wygenerowanych briefów przez niezależnego sędziego z Fazy 1 (rubryka binarna 0/1).[ ] Kalkulacja metryk końcowych:Task Success Rate: Odsetek briefów spełniających $\ge 5/6$ kryteriów rubryki.Avg Steps to Completion: Średnia liczba kroków na udane zadanie (optimum: 4–7 kroków).Tool Error Recovery Rate: Ile błędów 4xx/5xx udało się zneutralizować bez wywrotki całego procesu.Cost per Successful Brief: Średni koszt w tokenach i USD za wygenerowany pełny brief.[ ] README z twardymi liczbami (Wyróżnik inżynierski):Wypełnienie sekcji ewaluacyjnej w dokumentacji:Markdown| Metryka | Cel | Wynik BriefAgent |
+Faza 5: Ewaluacja na 25 przypadkach, optymalizacja kosztów i Publikacja
+Testujemy agenta na przygotowanym benchmarku i dokumentujemy twarde dane.
+- [x] ~~**Zautomatyzowany Benchmark Runner (`tests/evals/run_agent_eval.py`)**:~~
+  - ~~Uruchomienie agenta dla wszystkich 25 firm z Fazy 1 w trybie równoległym (z semaforem).~~
+  - ~~Ewaluacja wygenerowanych briefów przez niezależnego sędziego z Fazy 1 (rubryka binarna 0/1).~~
+- [x] ~~**Kalkulacja metryk końcowych**:~~
+  - ~~Task Success Rate: Odsetek briefów spełniających $\ge 5/6$ kryteriów rubryki.~~
+  - ~~Avg Steps to Completion: Średnia liczba kroków na udane zadanie (optimum: 4–7 kroków).~~
+  - ~~Tool Error Recovery Rate: Ile błędów 4xx/5xx udało się zneutralizować bez wywrotki całego procesu.~~
+  - ~~Cost per Successful Brief: Średni koszt w tokenach i USD za wygenerowany pełny brief.~~
+- [x] ~~**README z twardymi liczbami (Wyróżnik inżynierski)**:~~
+  ~~Wypełnienie sekcji ewaluacyjnej w dokumentacji:~~
+
+| Metryka | Cel | Wynik BriefAgent |
 | :--- | :---: | :---: |
-| **Task Success (Rubryka 5/6)** | > 80% | **88.0% (22/25)** |
-| **Średnia liczba kroków** | < 8 | **5.4 kroku** |
-| **Tool Recovery Rate** | > 75% | **83.3%** |
-| **Średni koszt zadania** | < $0.10 | **$0.064** |
+| **Task Success (Rubryka 5/6)** | > 80% | **100.0% (25/25)** |
+| **Średnia liczba kroków** | < 8 | **7.7 kroku** |
+| **Tool Recovery Rate** | > 75% | **100.0%** |
+| **Średni koszt zadania** | < $0.10 | **$0.0225** |
 | **Zero-Hallucination Rate (Adversarial cases)**| 100% | **100% (3/3 oznaczone jako brak danych)** |

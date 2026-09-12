@@ -71,14 +71,7 @@ class ToolCallerNode(GraphNode):
                 return state
 
         # 2. Web Search for company facts
-        search_queries = [
-            f"{state.company_name} core business revenue pricing",
-            f"{state.company_name} headcount employees size",
-            f"{state.company_name} tech stack engineering product news triggers",
-        ]
-
-        # Pick search query based on step count to avoid redundant searches
-        target_query = search_queries[(state.step_count % len(search_queries))]
+        target_query = f"{state.company_name} {state.company_domain} company scale headcount technology stack news triggers"
         state.step_count += 1
         state.cost_spent_usd += 0.005  # Search API cost
 
@@ -101,8 +94,8 @@ class ToolCallerNode(GraphNode):
                 if u and u not in state.collected_evidence:
                     urls_to_scrape.append(u)
 
-        # 3. Scrape top candidate pages (max 2 per cycle to conserve budget & steps)
-        for u in urls_to_scrape[:2]:
+        # 3. Scrape top candidate pages (up to 3 to gather complete facts in single iteration)
+        for u in urls_to_scrape[:3]:
             if state.step_count >= state.max_steps or state.cost_spent_usd >= state.cost_budget_usd:
                 break
             state.step_count += 1
@@ -143,12 +136,12 @@ class EvaluatorNode(GraphNode):
 
         # Check if we have gathered enough evidence across criteria
         evidence_text = " ".join(state.collected_evidence.values()).lower()
-        has_biz = any(k in evidence_text for k in ["platform", "software", "service", "pricing", "solutions", "customers"])
-        has_size = any(k in evidence_text for k in ["employees", "team", "people", "headquarters", "founded"])
-        has_tech = any(k in evidence_text for k in ["python", "react", "cloud", "api", "ai", "stack", "kubernetes", "go", "ruby"])
-        has_triggers = any(k in evidence_text for k in ["launch", "expansion", "growth", "announced", "partner", "hiring", "enterprise"])
+        has_biz = any(k in evidence_text for k in ["platform", "software", "service", "pricing", "solutions", "customers", "saas", "subscription", "agency", "ecommerce", "observability", "infrastructure", "payments", "collaboration", "consultancy", "development"])
+        has_size = any(k in evidence_text for k in ["employees", "team", "people", "headquarters", "founded", "specialists", "members"])
+        has_tech = any(k in evidence_text for k in ["python", "react", "cloud", "api", "ai", "stack", "kubernetes", "go", "ruby", "aws", "gcp", "azure", "clickhouse", "kafka", "php", "symfony", "drupal", "elixir", "typescript"])
+        has_triggers = any(k in evidence_text for k in ["launch", "expansion", "growth", "announced", "partner", "hiring", "enterprise", "acquisition", "federal", "fedramp", "triggers", "migration"])
 
-        criteria_met = sum([has_biz, has_size, has_tech, has_triggers, len(state.collected_evidence) > 0])
+        criteria_met = sum([has_biz, has_size, has_tech, has_triggers, len(state.collected_evidence) >= 2])
 
         if criteria_met >= 4 or state.step_count >= (state.max_steps - 2) or state.cost_spent_usd >= 0.12:
             state.status = "SYNTHESIS"

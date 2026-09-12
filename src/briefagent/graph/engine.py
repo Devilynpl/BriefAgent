@@ -48,9 +48,17 @@ class StateGraphEngine:
                     state = await self.synthesizer.execute(state, self.tools)
                 else:
                     state = await self.tool_caller.execute(state, self.tools)
+                    if state.status == "RESEARCHING":
+                        state = await self.evaluator.execute(state, self.tools)
+                        if state.status == "SYNTHESIS":
+                            state = await self.synthesizer.execute(state, self.tools)
+                        elif state.status == "PLANNING":
+                            pass  # Next loop
 
             elif state.status == "RESEARCHING":
                 state = await self.evaluator.execute(state, self.tools)
+                if state.status == "SYNTHESIS":
+                    state = await self.synthesizer.execute(state, self.tools)
 
             elif state.status == "VERIFYING":
                 if state.status == "SYNTHESIS":

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BriefAgent Execution Trace - Stripe</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --accent: #3b82f6;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --status-color: #10b981;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      margin: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .status-badge {
+      background: var(--status-color);
+      color: #000;
+      font-weight: 700;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+    }
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .step-badge {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .tool-badge {
+      background: #1e3a8a;
+      color: #93c5fd;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-family: monospace;
+    }
+    .step-plan {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .step-thought {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .result-summary {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      padding: 0.6rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #cbd5e1;
+    }
+    pre {
+      background: #0b1120;
+      border: 1px solid var(--card-border);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1 style="margin:0 0 0.2rem 0;">BriefAgent Trace: Stripe</h1>
+        <small style="color: var(--text-muted);">stripe.com</small>
+      </div>
+      <span class="status-badge">COMPLETED</span>
+    </div>
+
+    <div class="metrics-bar">
+      <div class="metric-card">
+        <div class="metric-value">12 / 12</div>
+        <div class="metric-label">Execution Steps</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">$0.0355</div>
+        <div class="metric-label">Total Cost (Budget: $0.15)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">4</div>
+        <div class="metric-label">Verified Sources</div>
+      </div>
+    </div>
+
+    <h2>Drzewo Decyzji i Kroków (Trace Log)</h2>
+    <div class="timeline">
+      
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-badge">Step 0</span>
+                
+                <span class="step-cost">$0.0000</span>
+              </div>
+              <div class="step-plan"><strong>Action:</strong> Planner hypothesis formulation and DNS pre-flight verification</div>
+              <div class="step-thought"><strong>Chain-of-Thought:</strong> Initiating research protocol for Stripe (stripe.com). Tier: ENTERPRISE</div>
+              
+            </div>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-badge">Step 1</span>
+                <span class="badge tool-badge">domain_dns_lookup</span>
+                <span class="step-cost">$0.0030</span>
+              </div>
+              <div class="step-plan"><strong>Action:</strong> Tool call: domain_dns_lookup</div>
+              <div class="step-thought"><strong>Chain-of-Thought:</strong> Executing resilient tool action for hypothesis validation</div>
+              <div class="result-summary">{'domain': 'stripe.com', 'is_live': True, 'has_mx': True, 'has_a': True, 'provider': 'DNS Made Easy', 'error': None}</div>
+            </div>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-badge">Step 2</span>
+                <span class="badge tool-badge">web_search</span>
+                <span class="step-cost">$0.0030</span>
+              </div>
+              <div class="step-plan"><strong>Action:</strong> Tool call: web_search</div>
+              <div class="step-thought"><strong>Chain-of-Thought:</strong> Executing resilient tool action for hypothesis validation</div>
+              <div class="result-summary">[{'title': 'Stripe - Financial Infrastructure for the Internet', 'url': 'https://stripe.com', 'snippet': 'Stripe builds economic infrastructure for the internet, monetizing via transaction fee percent</div>
+            </div>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-badge">Step 3</span>
+                <span class="badge tool-badge">scrape_page</span>
+                <span class="step-cost">$0.0030</span>
+              </div>
+              <div class="step-plan"><strong>Action:</strong> Tool call: scrape_page</div>
+              <div class="step-thought"><strong>Chain-of-Thought:</strong> Executing resilient tool action for hypothesis validation</div>
+              <div class="result-summary"># Stripe Payments Infrastructure Millions of companies use Stripe to accept payments, send payouts, and manage their businesses online with per-transaction fee economics.</div>
+            </div>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-badge">Step 4</span>
+                <span class="badge tool-badge">scrape_page</span>
+                <span class="step-cost">$0.0030</span>
+              </div>
+              <div class="step-plan"><strong>Action:</strong> Tool call: scrape_page</div>
+              <div class="step-thought"><strong>Chain-of-Thought:</strong> Executing resilient tool action for hypothesis validation</div>
+              <div class="result-summary"># Stripe About Over 8,000 employees worldwide supporting hundreds of billions in annual transaction volume.</div>
+            </div>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-badge">Step 5</span>
+                <span class="badge tool-badge">web_search</span>
+                <span class="step-cost">$0.0030</span>
+              </div>
+              <div class="step-plan"><strong>Action:</strong> Tool call: web_search</div>
+              <div class="step-thought"><strong>Chain-of-Thought:</strong> Executing resilient tool action for hypothesis validation</div>
+              <div class="result-summary">[{'title': 'Stripe - Financial Infrastructure for the Internet', 'url': 'https://stripe.com', 'snippet': 'Stripe builds economic infrastructure for the internet, monetizing via transaction fee percent</div>
+            </div>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-badge">Step 6</span>
+                <span class="badge tool-badge">scrape_page</span>
+                <span class="step-cost">$0.0030</span>
+              </div>
+              <div class="step-plan"><strong>Action:</strong> Tool call: scrape_page</div>
+              <div class="step-thought"><strong>Chain-of-Thought:</strong> Executing resilient tool action for hypothesis validation</div>
+              <div class="result-summary"># Technology Utilizes Ruby with static typing (Sorbet), Go microservices, Envoy, and AWS global infrastructure.</div>
+            </div>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-badge">Step 7</span>
+                <span class="badge tool-badge">scrape_page</span>
+                <span class="step-cost">$0.0030</span>
+              </div>
+              <div class="step-plan"><strong>Action:</strong> Tool call: scrape_page</div>
+              <div class="step-thought"><strong>Chain-of-Thought:</strong> Executing resilient tool action for hypothesis validation</div>
+              <div class="result-summary"># Enterprise Expansion Stripe announced enterprise partnerships with major global retail brands and expansion into Latin American payment methods.</div>
+            </div>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-badge">Step 8</span>
+                
+                <span class="step-cost">$0.0355</span>
+              </div>
+              <div class="step-plan"><strong>Action:</strong> Synthesize structured AccountBrief</div>
+              <div class="step-thought"><strong>Chain-of-Thought:</strong> Dossier completed with status COMPLETED</div>
+              
+            </div>
+            
+    </div>
+
+    <h2>Finalne Dossier (AccountBrief JSON)</h2>
+    <pre><code>{
+  "company_name": "Stripe",
+  "value_proposition": "Stripe is a technology organization providing specialized digital products and software services.",
+  "estimated_size": "8,000 employees",
+  "verified_sources": [
+    "https://stripe.com",
+    "https://stripe.com/about",
+    "https://stripe.com/blog/ruby-sorbet-tech",
+    "https://stripe.com/newsroom/enterprise"
+  ],
+  "tech_stack_detected": [
+    "Go",
+    "AWS"
+  ],
+  "sales_triggers": [
+    "Stripe announced enterprise partnerships with major global retail brands and expansion into Latin American payment methods.",
+    "Accelerating enterprise customer acquisition in core markets",
+    "Expanding modern product capabilities and engineering team"
+  ],
+  "confidence_score": 0.92,
+  "missing_information": []
+}</code></pre>
+  </div>
+</body>
+</html>

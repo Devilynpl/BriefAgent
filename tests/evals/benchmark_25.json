@@ -1,0 +1,177 @@
+[
+  {
+    "name": "Snowflake",
+    "domain": "snowflake.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "Cloud data warehousing, high noise"
+  },
+  {
+    "name": "Datadog",
+    "domain": "datadoghq.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "Cloud monitoring and APM platform"
+  },
+  {
+    "name": "Stripe",
+    "domain": "stripe.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "Financial infrastructure & payments"
+  },
+  {
+    "name": "Cloudflare",
+    "domain": "cloudflare.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "Web security, CDN and edge compute"
+  },
+  {
+    "name": "HubSpot",
+    "domain": "hubspot.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "CRM, marketing automation"
+  },
+  {
+    "name": "Shopify",
+    "domain": "shopify.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "Global e-commerce platform"
+  },
+  {
+    "name": "Twilio",
+    "domain": "twilio.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "Customer engagement and communications APIs"
+  },
+  {
+    "name": "Atlassian",
+    "domain": "atlassian.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "Collaboration software (Jira, Confluence)"
+  },
+  {
+    "name": "GitLab",
+    "domain": "gitlab.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "DevSecOps platform"
+  },
+  {
+    "name": "Asana",
+    "domain": "asana.com",
+    "tier": "ENTERPRISE",
+    "is_adversarial": false,
+    "notes": "Work management and tracking software"
+  },
+  {
+    "name": "Monterail",
+    "domain": "monterail.com",
+    "tier": "MID_MARKET_SAAS",
+    "is_adversarial": false,
+    "notes": "Software development company"
+  },
+  {
+    "name": "Netguru",
+    "domain": "netguru.com",
+    "tier": "MID_MARKET_SAAS",
+    "is_adversarial": false,
+    "notes": "Digital acceleration & consultancy"
+  },
+  {
+    "name": "10Clouds",
+    "domain": "10clouds.com",
+    "tier": "MID_MARKET_SAAS",
+    "is_adversarial": false,
+    "notes": "AI and software development house"
+  },
+  {
+    "name": "Brainly",
+    "domain": "brainly.com",
+    "tier": "MID_MARKET_SAAS",
+    "is_adversarial": false,
+    "notes": "EdTech peer-to-peer learning network"
+  },
+  {
+    "name": "Docplanner",
+    "domain": "docplanner.com",
+    "tier": "MID_MARKET_SAAS",
+    "is_adversarial": false,
+    "notes": "Healthcare booking and management SaaS"
+  },
+  {
+    "name": "PostHog",
+    "domain": "posthog.com",
+    "tier": "MID_MARKET_SAAS",
+    "is_adversarial": false,
+    "notes": "Open-source product analytics suite"
+  },
+  {
+    "name": "Supabase",
+    "domain": "supabase.com",
+    "tier": "MID_MARKET_SAAS",
+    "is_adversarial": false,
+    "notes": "Open-source Firebase alternative"
+  },
+  {
+    "name": "Basecamp",
+    "domain": "basecamp.com",
+    "tier": "MID_MARKET_SAAS",
+    "is_adversarial": false,
+    "notes": "Project management software by 37signals"
+  },
+  {
+    "name": "Boldare",
+    "domain": "boldare.com",
+    "tier": "SMALL_SMB",
+    "is_adversarial": false,
+    "notes": "Digital product design & development"
+  },
+  {
+    "name": "Droptica",
+    "domain": "droptica.com",
+    "tier": "SMALL_SMB",
+    "is_adversarial": false,
+    "notes": "Drupal agency & web development agency"
+  },
+  {
+    "name": "Apptension",
+    "domain": "apptension.com",
+    "tier": "SMALL_SMB",
+    "is_adversarial": false,
+    "notes": "Creative software house for SaaS & agencies"
+  },
+  {
+    "name": "Ideamotive",
+    "domain": "ideamotive.co",
+    "tier": "SMALL_SMB",
+    "is_adversarial": false,
+    "notes": "Tech talent and product development agency"
+  },
+  {
+    "name": "OmniVortex HyperTech Dynamics",
+    "domain": "omnivortexhypertech.nonexistent",
+    "tier": "ADVERSARIAL_STEALTH",
+    "is_adversarial": true,
+    "notes": "Fictional company, must gracefully degrade"
+  },
+  {
+    "name": "Aetheria Quantum BioLabs",
+    "domain": "aetheriaquantumbio.invalid",
+    "tier": "ADVERSARIAL_STEALTH",
+    "is_adversarial": true,
+    "notes": "Fictional deeptech entity, zero sources"
+  },
+  {
+    "name": "NonExistentPhantomCorp123",
+    "domain": "nonexistentphantomcorp123.fake",
+    "tier": "ADVERSARIAL_STEALTH",
+    "is_adversarial": true,
+    "notes": "Non-registered ghost company, strict degradation test"
+  }
+]

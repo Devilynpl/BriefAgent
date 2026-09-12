@@ -51,7 +51,20 @@ Agent jest tak silny, jak jego odporność na błędy zewnętrzne (timeouty, err
 - [x] ~~**Ścisła walidacja wejść/wyjść narzędzi (Schema Guard)**:~~
   - ~~Jeśli model przekaże do narzędzia web_search błędny JSON lub URL bez protokołu, narzędzie nie rzuca nieskorelowanego wyjątku Pythonowego, lecz zwraca ustrukturyzowany błąd: `ToolError: Invalid argument 'url'. Must start with https://`, zmuszając agenta do autorefleksji.~~
 
-Faza 3: Graf stanów (Orkiestracja), Budżetowanie i Pętla DecyzyjnaRezygnujemy z niekontrolowanych pętli while True. Używamy deterministycznego grafu stanów (np. LangGraph lub autorskiej maszyny stanów).[ ] Architektura Grafu Decyzyjnego:Node: Planner: Rozbija cel na 3 konkretne hipotezy do sprawdzenia (oferta, skala, newsy).Node: Tool Caller: Wykonuje równolegle lub sekwencyjnie zaplanowane akcje.Node: Evaluator / Fact-Checker: Sprawdza, czy zebrane fakty odpowiadają na rubrykę. Jeśli nie — decyduje o kolejnym kroku badawczym.Node: Synthesizer: Buduje ostateczny raport.[ ] Mechanizm twardego budżetu (Cost & Step Limiter):step_count >= 12 $\to$ natychmiastowe przejście do syntezy cząstkowej z ostrzeżeniem „Przekroczono limit kroków”.cost_spent_usd >= $0.15 $\to$ natychmiastowe przerwanie pętli badawczej i generacja z danych już zgromadzonych.[ ] Graceful Failure Node:Jeśli po 3 krokach agent nie znalazł żadnych rzetelnych źródeł, graf omija syntezę i kończy działanie statusem UNVERIFIABLE_COMPANY, uniemożliwiając zmyślanie.Faza 4: Pełny Silnik Śledzenia (Execution Trace Engine)Agent bez przejrzystego logowania to czarna skrzynka, której nikt w biznesie nie zaufa.[ ] Rejestrator ścieżki myślowej i wywołań (Trace Collector):Rejestracja w formacie JSONL każdego kroku:step: numer krokuthought: wewnętrzny Chain-of-Thought agentaaction_plan: co zamierza wywołaćtool_call: dokładne parametrytool_result_summary: pierwsze 200 znaków odpowiedzi narzędziatokens_used oraz koszt w USD[ ] Generator wizualnego raportu wykonania (Execution Trace Tree):Eksport pojedynczego przebiegu do czytelnego pliku HTML/Markdown pokazującego drzewo decyzji:Plan $\to$ Search [OK] $\to$ Scrape [Error 403 $\to$ Fallback do Mocka] $\to$ Synthesis $\to$ Done.[ ] Wyjście końcowe w restrykcyjnym formacie JSON:Pythonclass AccountBrief(BaseModel):
+Faza 3: Graf stanów (Orkiestracja), Budżetowanie i Pętla Decyzyjna
+Rezygnujemy z niekontrolowanych pętli while True. Używamy deterministycznego grafu stanów (np. LangGraph lub autorskiej maszyny stanów).
+- [x] ~~**Architektura Grafu Decyzyjnego**:~~
+  - ~~Node: Planner: Rozbija cel na 3 konkretne hipotezy do sprawdzenia (oferta, skala, newsy).~~
+  - ~~Node: Tool Caller: Wykonuje równolegle lub sekwencyjnie zaplanowane akcje.~~
+  - ~~Node: Evaluator / Fact-Checker: Sprawdza, czy zebrane fakty odpowiadają na rubrykę. Jeśli nie — decyduje o kolejnym kroku badawczym.~~
+  - ~~Node: Synthesizer: Buduje ostateczny raport.~~
+- [x] ~~**Mechanizm twardego budżetu (Cost & Step Limiter)**:~~
+  - ~~step_count >= 12 $\to$ natychmiastowe przejście do syntezy cząstkowej z ostrzeżeniem „Przekroczono limit kroków”.~~
+  - ~~cost_spent_usd >= $0.15 $\to$ natychmiastowe przerwanie pętli badawczej i generacja z danych już zgromadzonych.~~
+- [x] ~~**Graceful Failure Node**:~~
+  - ~~Jeśli po 3 krokach agent nie znalazł żadnych rzetelnych źródeł, graf omija syntezę i kończy działanie statusem UNVERIFIABLE_COMPANY, uniemożliwiając zmyślanie.~~
+
+Faza 4: Pełny Silnik Śledzenia (Execution Trace Engine)Agent bez przejrzystego logowania to czarna skrzynka, której nikt w biznesie nie zaufa.[ ] Rejestrator ścieżki myślowej i wywołań (Trace Collector):Rejestracja w formacie JSONL każdego kroku:step: numer krokuthought: wewnętrzny Chain-of-Thought agentaaction_plan: co zamierza wywołaćtool_call: dokładne parametrytool_result_summary: pierwsze 200 znaków odpowiedzi narzędziatokens_used oraz koszt w USD[ ] Generator wizualnego raportu wykonania (Execution Trace Tree):Eksport pojedynczego przebiegu do czytelnego pliku HTML/Markdown pokazującego drzewo decyzji:Plan $\to$ Search [OK] $\to$ Scrape [Error 403 $\to$ Fallback do Mocka] $\to$ Synthesis $\to$ Done.[ ] Wyjście końcowe w restrykcyjnym formacie JSON:Pythonclass AccountBrief(BaseModel):
     company_name: str
     value_proposition: str
     estimated_size: str

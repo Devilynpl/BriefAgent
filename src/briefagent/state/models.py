@@ -25,6 +25,7 @@ class AccountBrief(BaseModel):
     ai_and_digital_opportunities: List[str] = Field(default_factory=list)
     confidence_score: float = Field(default=0.0, ge=0.0, le=1.0)
     verified_sources: List[str] = Field(default_factory=list)
+    icebreaker_emails: List[str] = Field(default_factory=list)
     missing_information: List[str] = Field(default_factory=list)
 
 

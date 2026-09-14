@@ -6,18 +6,19 @@ import dns.resolver
 import httpx
 
 from .html_cleaner import clean_html_to_markdown
-from .mock_data import BENCHMARK_MOCK_DATA
 from .resilience import CircuitBreaker, with_retry_and_circuit_breaker
 from .schema_guard import ToolError, validate_tool_input
 
 logger = logging.getLogger("briefagent.tools")
-
 
 # Schemas for Tool Inputs
 class WebSearchInput(BaseModel):
     query: str = Field(..., min_length=2, description="Search query string")
     num_results: int = Field(default=5, ge=1, le=10, description="Number of results to return")
 
+import ipaddress
+import socket
+from urllib.parse import urlparse
 
 class ScrapePageInput(BaseModel):
     url: str = Field(..., description="Target webpage URL, must start with http:// or https://")
@@ -26,10 +27,38 @@ class ScrapePageInput(BaseModel):
         if not (self.url.startswith("http://") or self.url.startswith("https://")):
             raise ToolError(f"ToolError: Invalid argument 'url'. Must start with https:// or http:// (got '{self.url}')")
 
+        # SECURITY: SSRF Guard (Server-Side Request Forgery Prevention)
+        parsed = urlparse(self.url)
+        hostname = parsed.hostname
+        if not hostname:
+            raise ToolError("ToolError: Invalid URL, missing hostname.")
+
+        # Reject common loopback names immediately
+        if hostname.lower() in ("localhost", "127.0.0.1", "0.0.0.0", "::1"):
+            raise ToolError(f"ToolError: SSRF blocked. Access to local interfaces ({hostname}) is forbidden.")
+
+        # Resolve host to IP and check if it belongs to private or link-local ranges
+        try:
+            addr_info = socket.getaddrinfo(hostname, None)
+            for family, _, _, _, sockaddr in addr_info:
+                ip_str = sockaddr[0]
+                ip_obj = ipaddress.ip_address(ip_str)
+                if (
+                    ip_obj.is_private
+                    or ip_obj.is_loopback
+                    or ip_obj.is_link_local
+                    or ip_obj.is_reserved
+                    or ip_obj.is_multicast
+                ):
+                    raise ToolError(
+                        f"ToolError: SSRF blocked. Target resolved to restricted/private IP address {ip_str}."
+                    )
+        except socket.gaierror:
+            # Domain cannot be resolved, allow execution to fail gracefully downstream
+            pass
 
 class DomainDnsInput(BaseModel):
     domain: str = Field(..., min_length=3, description="Domain name (e.g. snowflake.com)")
-
 
 class ToolManager:
     """
@@ -37,12 +66,10 @@ class ToolManager:
     - web_search
     - scrape_page
     - domain_dns_lookup
-    Supports real networking with automatic fallback to mock database, or forced mock mode for CI/offline runs.
     Protected with Exponential Backoff (1s -> 3s, max 2 retries), Circuit Breaker, and Schema Guard.
     """
 
-    def __init__(self, use_mock_fallback: bool = True, force_mock: bool = False):
-        self.use_mock_fallback = use_mock_fallback
+    def __init__(self, force_mock: bool = False):
         self.force_mock = force_mock
         self.search_cb = CircuitBreaker(failure_threshold=3, recovery_timeout=10.0)
         self.scrape_cb = CircuitBreaker(failure_threshold=3, recovery_timeout=10.0)
@@ -59,88 +86,39 @@ class ToolManager:
         return self.recovered_errors / total_errors
 
     async def _execute_search_internal(self, query: str, num_results: int) -> List[Dict[str, str]]:
-        if self.force_mock:
-            return self._mock_search(query, num_results)
+        import asyncio
+        from duckduckgo_search import DDGS
 
-        # Real web search: DuckDuckGo HTML / API fallback
-        try:
-            async with httpx.AsyncClient(timeout=6.0, follow_redirects=True) as client:
-                url = "https://html.duckduckgo.com/html/"
-                headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-                resp = await client.post(url, data={"q": query}, headers=headers)
-                if resp.status_code == 200:
-                    text = clean_html_to_markdown(resp.text)
-                    return [{"title": query, "url": f"https://duckduckgo.com/?q={query}", "snippet": text[:400]}]
-                elif resp.status_code in (429, 500, 502, 503, 504):
-                    raise httpx.HTTPStatusError(f"HTTP {resp.status_code}", request=resp.request, response=resp)
-        except Exception as e:
-            if self.use_mock_fallback:
-                return self._mock_search(query, num_results)
-            raise e
+        def do_search():
+            results = []
+            with DDGS() as ddgs:
+                for r in ddgs.text(query, max_results=num_results):
+                    results.append({
+                        "title": r.get("title", ""),
+                        "url": r.get("href", ""),
+                        "snippet": r.get("body", "")
+                    })
+            return results
 
-        return self._mock_search(query, num_results)
-
-    def _mock_search(self, query: str, num_results: int) -> List[Dict[str, str]]:
-        q_lower = query.lower()
-        results = []
-        for domain, data in BENCHMARK_MOCK_DATA.items():
-            domain_key = domain.split(".")[0]
-            if domain_key in q_lower or domain in q_lower:
-                results.extend(data.get("search", []))
-        if not results:
-            # Fallback search if domain keyword was not exact
-            for domain, data in BENCHMARK_MOCK_DATA.items():
-                for item in data.get("search", []):
-                    if any(w in item["snippet"].lower() for w in q_lower.split()):
-                        results.append(item)
-        return results[:num_results]
+        loop = asyncio.get_running_loop()
+        results = await loop.run_in_executor(None, do_search)
+        return results
 
     async def _execute_scrape_internal(self, url: str) -> str:
-        if self.force_mock:
-            return self._mock_scrape(url)
-
-        try:
-            async with httpx.AsyncClient(timeout=8.0, follow_redirects=True) as client:
-                headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-                resp = await client.get(url, headers=headers)
-                if resp.status_code == 200:
-                    clean_md = clean_html_to_markdown(resp.text)
-                    if len(clean_md.strip()) > 50:
-                        return clean_md
-                    return self._mock_scrape(url)
-                elif resp.status_code in (403, 404):
-                    # Direct fallback to mock if blocked or not found
-                    return self._mock_scrape(url)
-                elif resp.status_code in (429, 500, 502, 503):
-                    raise httpx.HTTPStatusError(f"HTTP {resp.status_code}", request=resp.request, response=resp)
-        except Exception as e:
-            if self.use_mock_fallback:
-                return self._mock_scrape(url)
-            raise e
-
-        return self._mock_scrape(url)
-
-    def _mock_scrape(self, url: str) -> str:
-        # Check direct URL match
-        for domain, data in BENCHMARK_MOCK_DATA.items():
-            scrape_dict = data.get("scrape", {})
-            if url in scrape_dict:
-                return scrape_dict[url]
-            # Match domain in url
-            if domain in url:
-                for mock_url, content in scrape_dict.items():
-                    if url.rstrip("/") == mock_url.rstrip("/"):
-                        return content
-                # Return first scrape for this domain
-                if scrape_dict:
-                    return next(iter(scrape_dict.values()))
-        return f"# Information for {url}\nPage scraped successfully with fallback data."
+        async with httpx.AsyncClient(timeout=8.0, follow_redirects=True) as client:
+            headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+            resp = await client.get(url, headers=headers)
+            if resp.status_code == 200:
+                clean_md = clean_html_to_markdown(resp.text)
+                if len(clean_md.strip()) > 50:
+                    return clean_md
+                return ""
+            elif resp.status_code in (429, 500, 502, 503):
+                raise httpx.HTTPStatusError(f"HTTP {resp.status_code}", request=resp.request, response=resp)
+        raise Exception(f"Scraping failed for URL: {url} (Status: {resp.status_code})")
 
     async def _execute_dns_internal(self, domain: str) -> Dict[str, Any]:
         clean_domain = domain.lower().replace("https://", "").replace("http://", "").split("/")[0]
-        if self.force_mock:
-            return self._mock_dns(clean_domain)
-
         try:
             resolver = dns.resolver.Resolver()
             resolver.timeout = 3.0
@@ -164,23 +142,7 @@ class ToolManager:
                 return {"domain": clean_domain, "is_live": False, "has_mx": False, "has_a": False, "error": "NXDOMAIN"}
             return {"domain": clean_domain, "is_live": True, "has_mx": has_mx, "has_a": has_a, "provider": "Public DNS"}
         except Exception:
-            if self.use_mock_fallback:
-                return self._mock_dns(clean_domain)
             return {"domain": clean_domain, "is_live": False, "has_mx": False, "has_a": False, "error": "DNS lookup failed"}
-
-    def _mock_dns(self, domain: str) -> Dict[str, Any]:
-        mock_info = BENCHMARK_MOCK_DATA.get(domain)
-        if mock_info and "dns" in mock_info:
-            dns_data = mock_info["dns"]
-            return {
-                "domain": domain,
-                "is_live": dns_data.get("has_a", False) or dns_data.get("has_mx", False),
-                "has_mx": dns_data.get("has_mx", False),
-                "has_a": dns_data.get("has_a", False),
-                "provider": dns_data.get("provider"),
-                "error": dns_data.get("error"),
-            }
-        return {"domain": domain, "is_live": False, "has_mx": False, "has_a": False, "error": "NXDOMAIN: Domain does not exist"}
 
     async def web_search(self, query: str, num_results: int = 5) -> Dict[str, Any]:
         self.total_tool_calls += 1

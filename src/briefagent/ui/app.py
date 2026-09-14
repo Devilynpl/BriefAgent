@@ -19,10 +19,13 @@ if str(BRIEFAGENT_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(BRIEFAGENT_ROOT / "src"))
 
 # Załaduj .env z DocGround dla GEMINI_API_KEY
-from dotenv import load_dotenv
-env_path = DOCGROUND_ROOT / ".env"
-if env_path.exists():
-    load_dotenv(dotenv_path=env_path)
+try:
+    from dotenv import load_dotenv
+    env_path = DOCGROUND_ROOT / ".env"
+    if env_path.exists():
+        load_dotenv(dotenv_path=env_path)
+except ImportError:
+    pass
 
 from briefagent.graph.engine import StateGraphEngine
 

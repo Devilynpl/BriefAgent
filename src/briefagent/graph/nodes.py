@@ -103,25 +103,32 @@ class ToolCallerNode(GraphNode):
                 if u and u not in state.collected_evidence and u not in urls_to_scrape:
                     urls_to_scrape.append(u)
 
-        # 3. Scrape top candidate pages (up to 3 to gather complete facts in single iteration)
-        for u in urls_to_scrape[:3]:
-            if state.step_count >= state.max_steps or state.cost_spent_usd >= state.cost_budget_usd:
-                break
-            state.step_count += 1
-            state.cost_spent_usd += 0.003  # Scrape cost
-            scrape_res = await tools.scrape_page(u)
-            state.trace_log.append(
-                ToolExecution(
-                    tool_name="scrape_page",
-                    tool_input={"url": u},
-                    tool_output=str(scrape_res.get("data"))[:200] if scrape_res.get("data") else None,
-                    error=scrape_res.get("error"),
-                    duration_ms=scrape_res.get("duration_ms", 100.0),
-                    retry_count=scrape_res.get("retry_count", 0),
+        # 3. Scrape top candidate pages (up to 4 to gather complete facts in single iteration)
+        import asyncio
+        batch = urls_to_scrape[:4]
+        if batch and state.step_count < state.max_steps and state.cost_spent_usd < state.cost_budget_usd:
+            state.step_count += 1  # Węzeł wykonał paczkę (1 krok równoległy)
+            
+            # Concurrent execution of scrapes
+            scrape_tasks = [tools.scrape_page(u) for u in batch]
+            results = await asyncio.gather(*scrape_tasks, return_exceptions=True)
+            
+            for u, scrape_res in zip(batch, results):
+                if isinstance(scrape_res, Exception):
+                    continue
+                state.cost_spent_usd += 0.003  # Scrape cost per URL processed
+                state.trace_log.append(
+                    ToolExecution(
+                        tool_name="scrape_page",
+                        tool_input={"url": u},
+                        tool_output=str(scrape_res.get("data"))[:200] if scrape_res.get("data") else None,
+                        error=scrape_res.get("error"),
+                        duration_ms=scrape_res.get("duration_ms", 100.0),
+                        retry_count=scrape_res.get("retry_count", 0),
+                    )
                 )
-            )
-            if scrape_res.get("success") and scrape_res.get("data"):
-                state.collected_evidence[u] = scrape_res["data"]
+                if scrape_res.get("success") and scrape_res.get("data"):
+                    state.collected_evidence[u] = scrape_res["data"]
 
         return state
 
@@ -182,6 +189,7 @@ class SynthesizerNode(GraphNode):
                 tech_stack_detected=[],
                 sales_triggers=[],
                 confidence_score=0.0,
+                icebreaker_emails=[],
                 missing_information=[
                     "Core business revenue model",
                     "Headcount & organization scale",
@@ -198,10 +206,11 @@ class SynthesizerNode(GraphNode):
         import os
         import json
         import urllib.request
-        from dotenv import load_dotenv
-        
-        # Load environment
-        load_dotenv()
+        try:
+            from dotenv import load_dotenv
+            load_dotenv()
+        except ImportError:
+            pass
         gemini_key = os.getenv("GEMINI_API_KEY", "")
         gemini_model = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
 
@@ -209,7 +218,7 @@ class SynthesizerNode(GraphNode):
             try:
                 system_prompt = (
                     "Jesteś profesjonalnym analitykiem wywiadu gospodarczego i doradcą sprzedaży B2B (Enterprise Sales Intelligence). "
-                    "Na podstawie zebranych materiałów źródłowych ze stron internetowych stwórz wyczerpujące, dokładne Dossier o firmie. "
+                    "Na podstawie zebranych materiałów źródłowych ze stron internetowych stwórz wyczerpujące, dokładne Dossier o firmie oraz zaproponuj 3 spersonalizowane, krótkie wiadomości Cold Email (Icebreakery) na podstawie zebranych danych, skierowane do C-level. "
                     "Zwróć wynik WYŁĄCZNIE jako poprawny obiekt JSON o polach:\n"
                     "{\n"
                     '  "company_name": "Pełna nazwa firmy",\n'
@@ -224,6 +233,7 @@ class SynthesizerNode(GraphNode):
                     '  "sales_triggers": ["Aktualne sygnały biznesowe, inwestycje, ekspansja, certyfikaty"],\n'
                     '  "ai_and_digital_opportunities": ["Obszary gdzie firma może zyskać na AI/automatyzacji"],\n'
                     '  "confidence_score": 0.90,\n'
+                    '  "icebreaker_emails": ["Temat: ...\\nCześć [Imię], ...", "...", "..."],\n'
                     '  "missing_information": ["Czego nie udało się jednoznacznie potwierdzić w źródłach"]\n'
                     "}"
                 )
@@ -244,7 +254,11 @@ class SynthesizerNode(GraphNode):
                     req_gate = urllib.request.Request(
                         tollgate_url,
                         data=json.dumps(payload_gate).encode("utf-8"),
-                        headers={"Content-Type": "application/json"}
+                        headers={
+                            "Content-Type": "application/json",
+                            # SECURITY FIX (CRITICAL-02): Internal auth header required by TollGate middleware.
+                            "X-Tollgate-Key": os.getenv("TOLLGATE_INTERNAL_KEY", ""),
+                        }
                     )
                     with urllib.request.urlopen(req_gate, timeout=30) as resp_gate:
                         gate_resp = json.loads(resp_gate.read().decode("utf-8"))
